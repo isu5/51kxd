@@ -64,6 +64,66 @@ wechat varchar(20) not null default '' comment '微信',
 addtime int not null default '' comment '时间'
 )engine=Innodb charset utf8 comment '其他信息表';
 
+----缴费表（财务）
+create table kxd_payment(
+id int unsigned primary key auto_increment,
+uid int unsigned not null default 0 comment '用户id',
+amount decimal(10.2) not null default 0 comment '金额',
+type tinyint unsigned not null default 0 comment '1为评估费，2为推荐费',
+addtime int not null default '' comment '时间'
+)engine=Innodb charset utf8 comment '缴费表（财务）';
+
+----产品表
+create table kxd_product(
+id int unsigned primary key auto_increment,
+logo varchar(100) not null default 0 comment 'logo',
+title varchar(100) not null default 0 comment '标题',
+adtitle varchar(100) not null default 0 comment '广告语',
+url varchar(100) not null default 0 comment '链接',
+addtime int not null default '' comment '时间'
+)engine=Innodb charset utf8 comment '产品表';
+
+----投诉Complaints
+create table kxd_complaints(
+id int unsigned primary key auto_increment,
+uid int unsigned not null default 0 comment '用户id',
+isread tinyint (1) unsigned not null default 1 comment '是否阅读0否1是',
+isgetmoney tinyint (1) unsigned not null default 1 comment '是否立即借到钱0否1是',
+isbad tinyint (1) unsigned not null default 0 comment '是否有不良记录0否1是',
+iszybad tinyint (1) unsigned not null default 1 comment '重要联系人是否有不良记录0否1是',
+ispay tinyint (1) unsigned not null default 1 comment '是否成功支付推荐费0否1是',
+isother tinyint (1) unsigned not null default 1 comment '是否希望再次尝试其他产品0否1是',
+zhima int unsigned not null default 0 comment '芝麻信用积分',
+descp varchar(255) not null default '' comment '问题描述',
+addtime int not null default '' comment '时间'
+)engine=Innodb charset utf8 comment '投诉表';
+
+----渠道表
+create table kxd_complaints(
+id int unsigned primary key auto_increment,
+channel varchar(60) not null default '' comment '渠道名称',
+amount decimal(10,2) not null default 0 comment '单条注册费用',
+urlnum int not null default 1 comment '链接数量',
+addtime int not null default '' comment '时间'
+)engine=Innodb charset utf8 comment '渠道表';
+
+----注册浏览统计表
+
+create table kxd_regstat(
+id int unsigned primary key auto_increment,
+cid int unsigned not null default 0 comment '渠道id',
+ip char(15) not null default 0 comment '浏览ip',
+click int not null default 0 comment '点击数',
+addtime int not null default '' comment '时间'
+)engine=Innodb charset utf8 comment '注册浏览统计表';
+
+
+
+
+
+
+
+
 
 
 
